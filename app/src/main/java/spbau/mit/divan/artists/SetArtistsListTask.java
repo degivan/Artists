@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -18,6 +19,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import static spbau.mit.divan.artists.Utils.*;
+import static spbau.mit.divan.artists.Utils.getCoverFromArtist;
 
 public class SetArtistsListTask extends AsyncTask<Void, Void, String> {
     String artistsListURL = null;
@@ -74,7 +78,7 @@ public class SetArtistsListTask extends AsyncTask<Void, Void, String> {
             });
             for (int i = 0; i < 10; i++) {
                 final int finalI = i;
-                new LoadImageTask(dataJSONArr.getJSONObject(i).getJSONObject("cover").getString("small"), cover ->
+                new LoadImageTask(getCoverFromArtist(dataJSONArr.getJSONObject(i), "small"), cover ->
                         ((ArtistsAdapter )listView.getAdapter()).updateViewCover(finalI, cover)).execute();
             }
         } catch (JSONException e) {
@@ -85,8 +89,8 @@ public class SetArtistsListTask extends AsyncTask<Void, Void, String> {
     private ArtistInfo parseArtistInfo(JSONObject artist) throws JSONException {
         String name = artist.getString("name");
         String genres = artist.getJSONArray("genres").toString();
-        String amount = Integer.toString(artist.getInt("tracks")) + " песен, " + Integer.toString(artist.getInt("albums")) + " альбомов";
-        Drawable cover = context.getResources().getDrawable(R.drawable.loading);
+        String amount = getDiscographyInfoFromArtist(artist);
+        Drawable cover = ContextCompat.getDrawable(context, R.drawable.loading);
         return new ArtistInfo(name, genres, amount, cover);
     }
 }

@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/artistpage_img"
+        android:src="@drawable/loading"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -21,8 +22,8 @@
         android:text="Large Text"
         android:id="@+id/artist_name"
         android:layout_below="@+id/artistpage_img"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="127dp" />
+        android:layout_alignRight="@+id/artist_genres"
+        android:layout_alignEnd="@+id/artist_genres" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,7 +31,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/artist_genres"
-        android:layout_below="@+id/artist_name"
+        android:layout_below="@+id/artist_discography"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -40,5 +41,14 @@
         android:text="Small Text"
         android:id="@+id/artist_description"
         android:layout_below="@+id/artist_genres"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="sdf"
+        android:id="@+id/artist_discography"
+        android:layout_below="@+id/artist_name"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

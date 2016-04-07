@@ -8,6 +8,8 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static spbau.mit.divan.artists.Utils.*;
+
 public class ArtistPageActivity extends AppCompatActivity {
 
     @Override
@@ -16,13 +18,17 @@ public class ArtistPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_artist_page);
         try {
             JSONObject artist = new JSONObject(getIntent().getStringExtra("artist_details"));
-            ((TextView) findViewById(R.id.artist_name)).setText(artist.getString("name"));
-            ((TextView) findViewById(R.id.artist_genres)).setText(artist.getJSONArray("genres").toString());
-            ((TextView) findViewById(R.id.artist_description)).setText(artist.getString("description"));
-            new LoadImageTask(artist.getJSONObject("cover").getString("big"), ((ImageView) findViewById(R.id.artistpage_img))::setImageDrawable).execute();
+            setTextToTextView(R.id.artist_name, artist.getString("name"));
+            setTextToTextView(R.id.artist_genres, artist.getJSONArray("genres").toString());
+            setTextToTextView(R.id.artist_description, artist.getString("description"));
+            setTextToTextView(R.id.artist_discography, getDiscographyInfoFromArtist(artist));
+            new LoadImageTask(getCoverFromArtist(artist, "big"), ((ImageView) findViewById(R.id.artistpage_img))::setImageDrawable).execute();
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
 
+    private void setTextToTextView(int id, String text) {
+        ((TextView) findViewById(id)).setText(text);
     }
 }
