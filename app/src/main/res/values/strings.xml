@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Artists</string>
+    <string name="forward_text">FORWARD</string>
 </resources>

@@ -1,4 +1,4 @@
-package spbau.mit.divan.artists;
+package spbau.mit.divan.artists.model;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
@@ -11,10 +11,20 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import spbau.mit.divan.artists.R;
+
+/**
+ * Custom adapter for artists list view.
+ */
 public class ArtistsAdapter extends BaseAdapter {
+    //List of ArtistInfo instances to display on ListView instance.
     private List<ArtistInfo> list;
+    //Activity with ListView on it.
     private Activity context;
 
+    /**
+     * Constructs new instance of ArtistsAdapter.
+     */
     public ArtistsAdapter(Activity context, List<ArtistInfo> artists) {
         super();
         this.context = context;
@@ -36,6 +46,9 @@ public class ArtistsAdapter extends BaseAdapter {
         return 0;
     }
 
+    /**
+     * Class which keeps views from ListView row.
+     */
     private class ViewHolder {
         TextView topTxtView;
         TextView midTxtView;
@@ -68,8 +81,16 @@ public class ArtistsAdapter extends BaseAdapter {
         return convertView;
     }
 
+    /**
+     * Used for update cover of artist row, when it's loaded.
+     *
+     * @param position Position of row to update.
+     * @param cover    New artist cover.
+     */
     public void updateViewCover(int position, Drawable cover) {
-        list.get(position).updateCover(cover);
-        notifyDataSetChanged();
+        if (position < list.size()) {
+            list.get(position).updateCover(cover);
+            notifyDataSetChanged();
+        }
     }
 }

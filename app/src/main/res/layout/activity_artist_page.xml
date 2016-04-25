@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="spbau.mit.divan.artists.ArtistPageActivity">
+    tools:context="spbau.mit.divan.artists.view.ArtistPageActivity">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -22,8 +24,7 @@
         android:text="Large Text"
         android:id="@+id/artist_name"
         android:layout_below="@+id/artistpage_img"
-        android:layout_alignRight="@+id/artist_genres"
-        android:layout_alignEnd="@+id/artist_genres" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,7 +33,8 @@
         android:text="Medium Text"
         android:id="@+id/artist_genres"
         android:layout_below="@+id/artist_discography"
-        android:layout_centerHorizontal="true" />
+        android:layout_toRightOf="@+id/genres"
+        android:layout_toEndOf="@+id/genres" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,15 +42,39 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
         android:id="@+id/artist_description"
-        android:layout_below="@+id/artist_genres"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/biography"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="sdf"
         android:id="@+id/artist_discography"
         android:layout_below="@+id/artist_name"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/artistpage_img"
+        android:layout_alignEnd="@+id/artistpage_img" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Жанры: "
+        android:id="@+id/genres"
+        android:textStyle="bold"
+        android:layout_below="@+id/artist_discography"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Биография: "
+        android:id="@+id/biography"
+        android:layout_below="@+id/artist_genres"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold" />
 </RelativeLayout>
